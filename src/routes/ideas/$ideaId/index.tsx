@@ -16,7 +16,7 @@ const ideaQueryOptions = (ideaId: string) => queryOptions({
 
 
 export const Route = createFileRoute('/ideas/$ideaId/')({
-    component: IdeaPage,
+    component: IdeaDetailsPage,
 
     loader: async ({ params, context: { queryClient } }) => {
         return queryClient.ensureQueryData(ideaQueryOptions(params.ideaId));
@@ -24,7 +24,7 @@ export const Route = createFileRoute('/ideas/$ideaId/')({
 })
 
 
-function IdeaPage() {
+function IdeaDetailsPage() {
     const { ideaId } = Route.useParams();
     const { data: idea } = useSuspenseQuery(ideaQueryOptions(ideaId));
     return (
